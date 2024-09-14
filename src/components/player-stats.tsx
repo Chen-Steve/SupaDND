@@ -60,23 +60,31 @@ export default function PlayerStats() {
     return level * 100;
   };
 
-  if (loading) return <div>Loading stats...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!stats) return <div>No stats found</div>;
+  if (loading) return <div className="text-center">Loading stats...</div>;
+  if (error) return <div className="text-center text-red-500">Error: {error}</div>;
+  if (!stats) return <div className="text-center">No stats found</div>;
 
   const xpForNextLevel = calculateXpForNextLevel(stats.level);
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-2xl">
-      <h2 className="text-2xl font-bold mb-4 border-b-2 border-gray-300 pb-2">Stats</h2>
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <p className="font-semibold text-red-500">Level: {stats.level}</p>
-          <p className="font-semibold text-green-500">Health: {stats.health}</p>
+    <div className="bg-gray-100 p-4 rounded-lg shadow-md w-full max-w-[150px] mx-auto">
+      <h2 className="text-lg font-bold mb-2 border-b border-gray-300 pb-1 text-center">Stats</h2>
+      <div className="flex flex-col space-y-2 text-sm">
+        <div className="flex justify-between items-center">
+          <span className="font-medium">Level:</span>
+          <span className="text-red-500">{stats.level}</span>
         </div>
-        <div>
-          <p className="font-semibold text-blue-500">XP: {stats.experience}/{xpForNextLevel}</p>
-          <p className="font-semibold text-yellow-500">Strength: {stats.strength}</p>
+        <div className="flex justify-between items-center">
+          <span className="font-medium">Health:</span>
+          <span className="text-green-500">{stats.health}</span>
+        </div>
+        <div className="flex justify-between items-center">
+          <span className="font-medium">XP:</span>
+          <span className="text-blue-500">{stats.experience}/{xpForNextLevel}</span>
+        </div>
+        <div className="flex justify-between items-center">
+          <span className="font-medium">Strength:</span>
+          <span className="text-yellow-500">{stats.strength}</span>
         </div>
       </div>
     </div>

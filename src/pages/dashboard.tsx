@@ -7,6 +7,7 @@ import { TbGradienter } from "react-icons/tb";
 import SettingsModal from "../components/settings-modal";
 import PlayerStats from "../components/player-stats";
 import ChatMessage from "../components/chat-message";
+import Inventory from "../components/player-inventory";
 import { supabase } from '../lib/supabaseClient';
 
 type Stats = {
@@ -157,7 +158,7 @@ export default function Welcome() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col relative">
       <div className="flex justify-between items-center p-8">
         <Link href="/" className="text-black border-2 border-black rounded-md hover:text-gray-800 text-4xl flex items-center">
           <IoMdArrowRoundBack/>
@@ -171,7 +172,7 @@ export default function Welcome() {
         </button>
       </div>
       
-      <div className="flex-grow flex flex-col items-center justify-start pt-2 px-4 overflow-hidden">
+      <div className="flex-grow flex flex-col items-center px-4 overflow-y-auto pb-40">
         <main className="w-full max-w-2xl text-center mb-4">
           {error ? (
             <p className="text-red-500">{error}</p>
@@ -182,33 +183,41 @@ export default function Welcome() {
           )}
         </main>
         
-        <div className="w-full max-w-2xl mb-4 flex flex-col space-y-2 overflow-y-auto flex-grow h-4/5">
+        <div className="w-full max-w-2xl mb-4 flex flex-col space-y-2">
           {messages.map((msg, index) => (
             <ChatMessage key={index} message={msg.message} isUser={msg.isUser} timestamp={msg.timestamp} />
           ))}
         </div>
-
-        <div className="w-full max-w-2xl mb-4 flex items-center space-x-2">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Type your message here..."
-            className="flex-grow px-4 py-2 text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-          />
-          <button
-            aria-label="Submit"
-            onClick={handleInputSubmit}
-            className="px-2 py-2 bg-black text-white rounded-md flex items-center justify-center group"
-          >
-            <TbGradienter className="text-3xl transition-transform duration-300 group-hover:rotate-180" />
-          </button>
-        </div>
       </div>
 
-      <div className="w-full max-w-3xl p-4 bg-white mx-auto flex justify-center">
-        <PlayerStats />
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div className="max-w-3xl mx-auto p-4">
+          <div className="mb-4 flex items-center space-x-2">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Type your message here..."
+              className="flex-grow px-4 py-2 text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+            />
+            <button
+              aria-label="Submit"
+              onClick={handleInputSubmit}
+              className="px-2 py-2 bg-black text-white rounded-md flex items-center justify-center group"
+            >
+              <TbGradienter className="text-3xl transition-transform duration-300 group-hover:rotate-180" />
+            </button>
+          </div>
+          <div className="flex justify-start items-stretch space-x-4">
+            <div className="w-[150px]">
+              <PlayerStats />
+            </div>
+            <div className="w-[600px]">
+              <Inventory />
+            </div>
+          </div>
+        </div>
       </div>
 
       <SettingsModal 
