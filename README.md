@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SupaDnd - A Text-Based Adventure Game
 
-## Getting Started
+## Overview
+This is a text-based adventure game, inspired by Dungeons & Dragons and [Pen Apple](https://example.com/pen-apple-link). The game leverages AI embeddings, such as GPT-4, to dynamically generate and interpret in-game content like storylines, enemies, stats, items, and more. Instead of using pre-programmed logic, natural language descriptions serve as the "ground truth," offering a more flexible and immersive gameplay experience.
 
-First, run the development server:
+The game is created using:
+- [Supabase](https://supabase.com) - Database and user authentication.
+- [Next.js](https://nextjs.org) - Frontend framework.
+- [Vercel](https://vercel.com) - Hosting platform.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- AI-driven storyline and content generation.
+- Dynamic interpretation of gameplay elements, such as enemies, items, and stats.
+- Fully text-based, focused on imagination and strategy.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How It Works
+_TBD_
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Self-Host
+### Prerequisites
+Make sure you have the following tools installed:
+- Node.js
+- Supabase CLI
+- Git
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/your-repo-name.git
+    ```
 
-## Learn More
+2. Install dependencies:
+    ```bash
+    cd your-repo-name
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Set up Supabase & OpenAI:
+    - [Create a Supabase account](https://supabase.com) and initialize your project.
+    - Set up your Supabase keys in a `.env.local` file:
+      ```
+      NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+      NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+      DATABASE_URL=your-supabase-db-url
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+      OPENAI_API_KEY=you-openai-key
+      ```
 
-## Deploy on Vercel
+4. Run the development server:
+    ```bash
+    npm run dev
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Deployment
+This project is deployed using [Vercel](https://vercel.com). You can deploy it directly by connecting your GitHub repository to Vercel and following their deployment process.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
